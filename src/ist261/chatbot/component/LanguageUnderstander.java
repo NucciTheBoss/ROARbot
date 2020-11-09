@@ -60,6 +60,39 @@ public class LanguageUnderstander {
 	}
 
 	private boolean isUserIntent(String nowInputText, String userIntentName) {
+		// Words to indicate intent is to get help using command
+		String[] useCommandKeyWord = new String[]{"How do", "How to", "Trying do", "Trying to",
+				"Can", "Need help", "Need to"};
+
+		// Words to indicate intent is to draft pbs script
+		String[] writePBSKeyWord = new String[]{"Autogenerate", "Write", "Draft", "Job script",
+				"Pbs script", "Submission Script", "Writing"};
+
+		// Words to indicate the user needs help troubleshooting
+		String[] troubleShootKeyWord = new String[]{"Error", "Received", "Trouble", "Troubleshoot"};
+
+		// Loop through each string array
+		for (int i = 0; i < useCommandKeyWord.length; i++){
+			if(nowInputText.toLowerCase().contains(useCommandKeyWord[i].toLowerCase())){
+				userIntentName = "UseCommand";
+				break;
+			}
+
+		}
+
+		for (int i = 0; i < writePBSKeyWord.length; i++){
+			if(nowInputText.toLowerCase().contains(writePBSKeyWord[i].toLowerCase())){
+				userIntentName = "WritePBS";
+				break;
+			}
+		}
+
+		for (int i = 0; i < troubleShootKeyWord.length; i++){
+			if(nowInputText.toLowerCase().contains(troubleShootKeyWord[i].toLowerCase())){
+				userIntentName = "";
+				break;
+			}
+		}
 
 		if(nowInputText.contains(userIntentName)) {
 			return true;
