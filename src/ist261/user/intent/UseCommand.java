@@ -10,9 +10,9 @@ public class UseCommand extends AbstractUserIntent{
         Hashtable<String, Object> result = new Hashtable<String, Object>();
         System.out.println(userMsg);
 
-        String[] commandList = new String[]{"alias", "cat", "cd", "chmod", "command","curl", "df", "du", "diff", "echo",
+        String[] commandList = new String[]{"alias", "cat", "cd", "chmod", "curl", "df", "du", "diff", "echo",
         "exit", "find", "grep", "gzip", "head", "history", "kill", "less", "ls", "man", "mkdir", "mv", "ps",
-        "pwd", "ssh", "tail", "tar", "top", "which"};
+        "pwd", "ssh", "tail", "tar", "top", "which", "wget"};
 
         for (int i = 0; i < commandList.length; i++){
             if(userMsg.toLowerCase().contains(commandList[i].toLowerCase())){

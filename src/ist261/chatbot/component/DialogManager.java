@@ -23,7 +23,40 @@ public class DialogManager {
 			}
 
 		}else if(nowUserIntent.getIntentName().equals("WritePBS")){
-			return "getting-to-it";
+			if(nowUserIntent.getLastestSlotValue("shell")==null){
+				return "ask-shell";
+			}
+			else if(nowUserIntent.getLastestSlotValue("alloc")==null){
+				return "ask-alloc";
+			}
+			else if(nowUserIntent.getLastestSlotValue("node")==null){
+				return "ask-node";
+			}
+			else if(nowUserIntent.getLastestSlotValue("ppn")==null){
+				return "ask-ppn";
+			}
+			else if(nowUserIntent.getLastestSlotValue("pmem")==null){
+				return "ask-pmem";
+			}
+			else if(nowUserIntent.getLastestSlotValue("walltime")==null){
+				return "ask-walltime";
+			}
+			else if(nowUserIntent.getLastestSlotValue("email_yes_no")==null){
+				return "ask-if-email";
+			}
+			else if(nowUserIntent.getLastestSlotValue("email_yes_no")!=null){
+				if(nowUserIntent.getLastestSlotValue("email_yes_no")=="no"){
+					return "finish-script";
+				}
+				else{
+					if (nowUserIntent.getLastestSlotValue("email")==null){
+						return "ask-email";
+					}
+					else {
+						return "finish-script";
+					}
+				}
+			}
 
 		}else if(nowUserIntent.getIntentName().equals("TroubleShoot")){
 			return "getting-to-it";
@@ -35,6 +68,7 @@ public class DialogManager {
 				return "ask-location";
 			}
 		}
+		return "";
 	}
 
 }
