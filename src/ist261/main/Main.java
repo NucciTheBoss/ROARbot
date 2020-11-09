@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
 		
-		Chatbot nowChatbot = new Chatbot("Jason", "WeatherBot");
+		Chatbot nowChatbot = new Chatbot("Jason", "ROARbot");
 		
 		ChatbotGUI nowChatbotGUI = new ChatbotGUI(nowChatbot);
 

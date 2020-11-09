@@ -50,9 +50,11 @@ public class LanguageUnderstander {
 			}
 		}else {
 			System.out.println("Detected User Intent: Else");
-			if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("WeatherForecast")) {//intent continues
+			if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("UseCommand")) {//intent continues
 				latestUserIntent.updateSlotValues(nowInputText);
-			}else if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("WillRain")) {//intent continues
+			}else if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("WritePBS")) {//intent continues
+				latestUserIntent.updateSlotValues(nowInputText);
+			}else if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("TroubleShoot")) {//intent continues
 				latestUserIntent.updateSlotValues(nowInputText);
 			}
 		}
@@ -74,7 +76,7 @@ public class LanguageUnderstander {
 		// Loop through each string array
 		for (int i = 0; i < useCommandKeyWord.length; i++){
 			if(nowInputText.toLowerCase().contains(useCommandKeyWord[i].toLowerCase())){
-				userIntentName = "UseCommand";
+				nowInputText = "UseCommand";
 				break;
 			}
 
@@ -82,14 +84,14 @@ public class LanguageUnderstander {
 
 		for (int i = 0; i < writePBSKeyWord.length; i++){
 			if(nowInputText.toLowerCase().contains(writePBSKeyWord[i].toLowerCase())){
-				userIntentName = "WritePBS";
+				nowInputText = "WritePBS";
 				break;
 			}
 		}
 
 		for (int i = 0; i < troubleShootKeyWord.length; i++){
 			if(nowInputText.toLowerCase().contains(troubleShootKeyWord[i].toLowerCase())){
-				userIntentName = "";
+				nowInputText = "TroubleShoot";
 				break;
 			}
 		}
