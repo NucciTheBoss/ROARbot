@@ -50,12 +50,12 @@ public class ChatbotGUI extends JFrame {
 		nowGUIFrame.add(inputTextBox);
 		inputTextBox.setSize(540, 30);
 		inputTextBox.setLocation(30, 920);
-		inputTextBox.setToolTipText("Ask WeatherBot about the weather!");
+		inputTextBox.setToolTipText("Ask ROARbot a question!");
 		inputTextBox.addActionListener(new InputTextListener(inputTextBox, chatHistoryPane, this));
 
 		// Add default message that indicates to user what they should ask
 		initMessage = "Hey there! My name is "+nowChatbot.getBotName()+"! I can help you with the following things:\n" +
-				"    1. General Linux usage\n" +
+				"    1. Common Linux commands\n" +
 				"    2. Writing PBS scripts\n" +
 				"    3. Basic troubleshooting\n" +
 				"Feel free to start asking me questions!";

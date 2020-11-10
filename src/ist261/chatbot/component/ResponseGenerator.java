@@ -2,7 +2,11 @@ package ist261.chatbot.component;
 
 import ist261.chatbot.infra.Chatbot;
 import ist261.user.intent.AbstractUserIntent;
+// Import random so we are able to choose a variety of responses
 import java.util.Random;
+
+// Import sql libraries to read project database
+import java.sql.*;
 
 // Import file class to write pbs script for user
 import java.io.FileWriter;
@@ -10,6 +14,9 @@ import java.io.IOException;
 import java.io.File;
 
 public class ResponseGenerator {
+
+	private Connection conn;
+	private Statement statement;
 
 	private Chatbot chatbot;
 	
@@ -38,7 +45,25 @@ public class ResponseGenerator {
 				}
 
 			}else if(nowConversationalAction.equals("answer-command")){
-				return "Here is your answer";
+				try {
+					// Connect to database
+					conn = DriverManager.getConnection("jdbc:sqlite:/home/nucci/Documents/ist261_code/ist261_final_project/data/commands.db");
+					conn.setAutoCommit(false);
+
+					// Retrieve data from commands.db
+					String commandBlurbStmt = "SELECT content FROM commandblurb WHERE name = ?";
+					PreparedStatement selectCommand = conn.prepareStatement(commandBlurbStmt);
+					selectCommand.setString(1, nowCommand);
+					ResultSet resultSet = selectCommand.executeQuery();
+
+					// Return content statement
+					return resultSet.getString("content");
+
+				} catch ( SQLException e ) {
+					System.out.println(e);
+
+				}
+
 			}else{
 				return "I'm sorry, but I don't understand what you just said. " +
 						"Try asking me something like \"How to use the 'cat' command!\"";
@@ -59,6 +84,9 @@ public class ResponseGenerator {
 				// Write to pbs script
 				try {
 					File newFile = new File("/home/nucci/work/roarbot_script.pbs");
+					if(newFile.isFile()){
+						newFile.delete();
+					}
 					newFile.createNewFile();
 					FileWriter pbsWriter = new FileWriter("/home/nucci/work/roarbot_script.pbs");
 					pbsWriter.write("#!/bin/"+shell+"\n");
