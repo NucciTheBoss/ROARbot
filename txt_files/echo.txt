@@ -1,0 +1,6 @@
+echo can be used to display a line of text.
+Not too complicated. You can use the following
+command to print the message "Hello World" to
+the terminal window:
+
+  echo "Hello World"

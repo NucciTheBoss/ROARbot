@@ -1,0 +1,8 @@
+alias can be used to set up custom
+shortcut commands to make things easier
+on your typing fingers. For example, if
+you wanted to have the command "rm" by
+default ask you if you want to delete
+a file you can use the following command:
+
+  alias rm="rm -i"

@@ -1,0 +1,7 @@
+curl is a program that can used to transfer data to
+or from a server using popular protocols such as
+HTTP, FTP, SCP, etc. The list goes on. You can
+use the following command to download a file
+from a website:
+
+  curl -O https://www.somesite.com/somefile.tar.gz

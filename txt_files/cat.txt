@@ -1,0 +1,12 @@
+cat is a program used to concatenate files
+together and print standard output to the
+terminal window. For example, you can use
+the following command to print out the contents
+of a file:
+
+  cat somefile.txt
+    
+To concatenate files, you can use the following
+command:
+
+  cat somefile.txt someotherfile.txt >> yetanotherfile.txt

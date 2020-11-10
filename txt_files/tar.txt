@@ -1,0 +1,11 @@
+tar is an archive utility program. It is commonly
+used to create or uncompress tar.gz files. For
+example, you can use the following command to uncompress
+a targ.gz file:
+
+  tar -xzvf somefile.tar.gz
+    
+To create your own tar.gz file you can use the following
+command:
+
+  tar -czvf somefile.tar.gz some_directory
