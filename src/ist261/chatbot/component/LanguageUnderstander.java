@@ -69,6 +69,7 @@ public class LanguageUnderstander {
 
 	private boolean isUserIntent(String nowInputText, String userIntentName) {
 		// Words to indicate intent is to get help using command
+		String originalNowInputText = nowInputText;
 		String[] useCommandKeyWord = new String[]{"How do", "How to", "Trying do", "Trying to",
 				"Can", "Need help", "Need to"};
 
@@ -99,7 +100,7 @@ public class LanguageUnderstander {
 
 		// Loop through each string array
 		for (int i = 0; i < useCommandKeyWord.length; i++){
-			if(nowInputText.toLowerCase().contains(useCommandKeyWord[i].toLowerCase())){
+			if(originalNowInputText.toLowerCase().contains(useCommandKeyWord[i].toLowerCase())){
 				nowInputText = "UseCommand";
 				break;
 			}
@@ -107,21 +108,21 @@ public class LanguageUnderstander {
 		}
 
 		for (int i = 0; i < writePBSKeyWord.length; i++){
-			if(nowInputText.toLowerCase().contains(writePBSKeyWord[i].toLowerCase())){
+			if(originalNowInputText.toLowerCase().contains(writePBSKeyWord[i].toLowerCase())){
 				nowInputText = "WritePBS";
 				break;
 			}
 		}
 
 		for (int i = 0; i < troubleShootKeyWord.length; i++){
-			if(nowInputText.toLowerCase().contains(troubleShootKeyWord[i].toLowerCase())){
+			if(originalNowInputText.toLowerCase().contains(troubleShootKeyWord[i].toLowerCase())){
 				nowInputText = "TroubleShoot";
 				break;
 			}
 		}
 
 		for (int i = 0; i < troubleShootProb.size(); i++) {
-			if(nowInputText.toLowerCase().contains(troubleShootProb.get(i).toLowerCase())){
+			if(originalNowInputText.toLowerCase().contains(troubleShootProb.get(i).toLowerCase())){
 				nowInputText = "TroubleShoot";
 				break;
 			}
