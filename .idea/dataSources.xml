@@ -8,5 +8,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/data/commands.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="troubleshoot.db" uuid="79407c14-5b33-47f9-b094-e1a1f821acaa">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/data/troubleshoot.db</jdbc-url>
+    </data-source>
   </component>
 </project>

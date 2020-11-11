@@ -56,10 +56,10 @@ public class LanguageUnderstander {
 				latestUserIntent.updateSlotValues(nowInputText);
 			}else if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("TroubleShoot")) {//intent continues
 				latestUserIntent.updateSlotValues(nowInputText);
+				}
 			}
 		}
-		
-	}
+
 
 	private boolean isUserIntent(String nowInputText, String userIntentName) {
 		// Words to indicate intent is to get help using command
@@ -71,7 +71,7 @@ public class LanguageUnderstander {
 				"Pbs script", "Submission Script", "Writing"};
 
 		// Words to indicate the user needs help troubleshooting
-		String[] troubleShootKeyWord = new String[]{"Error", "Received", "Trouble", "Troubleshoot"};
+		String[] troubleShootKeyWord = new String[]{"Error", "Received", "Trouble", "Troubleshoot", "Issue"};
 
 		// Loop through each string array
 		for (int i = 0; i < useCommandKeyWord.length; i++){

@@ -59,14 +59,16 @@ public class DialogManager {
 			}
 
 		}else if(nowUserIntent.getIntentName().equals("TroubleShoot")){
-			return "getting-to-it";
+			if (nowUserIntent.getLastestSlotValue("problem")==null){
+				return "ask-problem";
 
-		}else{
-			if(nowUserIntent.getLastestSlotValue("location")!=null) {
-				return "answer";
-			}else {
-				return "ask-location";
+			}else if(nowUserIntent.getLastestSlotValue("problem")!=null){
+				return "return-solution";
+
+			}else{
+				return "no-solution";
 			}
+
 		}
 		return "";
 	}

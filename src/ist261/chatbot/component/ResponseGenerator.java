@@ -16,7 +16,6 @@ import java.io.File;
 public class ResponseGenerator {
 
 	private Connection conn;
-	private Statement statement;
 
 	private Chatbot chatbot;
 	
@@ -152,6 +151,61 @@ public class ResponseGenerator {
 			}
 
 		}else if(nowUserIntent!=null&&nowUserIntent.getIntentName().equals("TroubleShoot")){
+			if (nowConversationalAction.equals("ask-problem")){
+				int troubleShootResponse = randomInt.nextInt(3);
+				switch (troubleShootResponse){
+					case 0:
+						return "I should be able to help you with the error " +
+								"that you are receiving! Just copy and paste the" +
+								"error message in my text box and I'll see " +
+								"if I can help!";
+
+					case 1:
+						return "I'll help! Just copy and paste the error message that " +
+								"you are receiving here and I'll see if I have a solution";
+
+					case 2:
+						return "Oh no! Copy and paste the error message here and I " +
+								"will see if I have a viable solution for you";
+
+				}
+			}else if (nowConversationalAction.equals("return-solution")){
+				String id = (String)nowUserIntent.getLastestSlotValue("problem");
+				String table = (String)nowUserIntent.getLastestSlotValue("table");
+				try {
+					conn = DriverManager.getConnection("jdbc:sqlite:/home/nucci/Documents/ist261_code/ist261_final_project/data/troubleshoot.db");
+					conn.setAutoCommit(false);
+
+					if (table.equals("qsubproblem")) {
+						// Retrieve viable solution from database
+						String solStmt = "SELECT solution FROM qsubproblem WHERE id = ?";
+						PreparedStatement solSelect = conn.prepareStatement(solStmt);
+						solSelect.setInt(1, Integer.parseInt(id));
+						ResultSet solResult = solSelect.executeQuery();
+
+						// return what is retrieved from the database
+						return solResult.getString("solution");
+					}
+
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
+
+
+			}else{
+				int noSolResponse = randomInt.nextInt(2);
+				switch (noSolResponse){
+					case 0:
+						return "Uh oh. Looks like I can't help you with this one. " +
+								"I suggest that you go get some help from the " +
+								"ICDS i-ASK center: https://www.icds.psu.edu/computing-services/support/";
+
+					case 1:
+						return "It looks like I don't have the answer for this one. " +
+								"I recommend contacting the ICDS i-ASK center:" +
+								"https://www.icds.psu.edu/computing-services/support/";
+				}
+			}
 
 		}else{
 			int otherResponse = randomInt.nextInt(3);
