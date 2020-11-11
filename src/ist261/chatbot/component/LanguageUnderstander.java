@@ -6,9 +6,15 @@ import ist261.user.intent.TroubleShoot;
 import ist261.user.intent.UseCommand;
 import ist261.user.intent.WritePBS;
 
+// Need to query databases
+import java.sql.*;
+import java.util.ArrayList;
+
 public class LanguageUnderstander {
 
 	private Chatbot chatbot;
+
+	private Connection conn;
 
 	private AbstractUserIntent latestUserIntent;
 	
@@ -73,6 +79,24 @@ public class LanguageUnderstander {
 		// Words to indicate the user needs help troubleshooting
 		String[] troubleShootKeyWord = new String[]{"Error", "Received", "Trouble", "Troubleshoot", "Issue"};
 
+		// List of errors stored in troubleshoot.db
+		ArrayList<String> troubleShootProb = new ArrayList<>();
+		try {
+			conn = DriverManager.getConnection("jdbc:sqlite:/home/nucci/Documents/ist261_code/ist261_final_project/data/troubleshoot.db");
+			conn.setAutoCommit(false);
+
+			String qsubProbStmt = "SELECT problem FROM qsubproblem";
+			PreparedStatement qsubSelect = conn.prepareStatement(qsubProbStmt);
+			ResultSet qsubResult = qsubSelect.executeQuery();
+
+			while(qsubResult.next()){
+				troubleShootProb.add(qsubResult.getString("problem"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
 		// Loop through each string array
 		for (int i = 0; i < useCommandKeyWord.length; i++){
 			if(nowInputText.toLowerCase().contains(useCommandKeyWord[i].toLowerCase())){
@@ -91,6 +115,13 @@ public class LanguageUnderstander {
 
 		for (int i = 0; i < troubleShootKeyWord.length; i++){
 			if(nowInputText.toLowerCase().contains(troubleShootKeyWord[i].toLowerCase())){
+				nowInputText = "TroubleShoot";
+				break;
+			}
+		}
+
+		for (int i = 0; i < troubleShootProb.size(); i++) {
+			if(nowInputText.toLowerCase().contains(troubleShootProb.get(i).toLowerCase())){
 				nowInputText = "TroubleShoot";
 				break;
 			}
