@@ -1,0 +1,7 @@
+Ah! Looks like you forgot to specify the allocation you are submitting your job to. Don’t worry, you can fix this by adding the following line to your pbs script:
+
+  #PBS -A open
+
+If you have an allocation you want to submit your job to, just modify the above pbs directive to the following:
+
+  #PBS -A <allocation_name>
