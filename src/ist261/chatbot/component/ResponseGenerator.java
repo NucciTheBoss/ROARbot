@@ -156,7 +156,7 @@ public class ResponseGenerator {
 				switch (troubleShootResponse){
 					case 0:
 						return "I should be able to help you with the error " +
-								"that you are receiving! Just copy and paste the" +
+								"that you are receiving! Just copy and paste the " +
 								"error message in my text box and I'll see " +
 								"if I can help!";
 
