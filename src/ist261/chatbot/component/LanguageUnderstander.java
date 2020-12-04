@@ -1,10 +1,7 @@
 package ist261.chatbot.component;
 
 import ist261.chatbot.infra.Chatbot;
-import ist261.user.intent.AbstractUserIntent;
-import ist261.user.intent.TroubleShoot;
-import ist261.user.intent.UseCommand;
-import ist261.user.intent.WritePBS;
+import ist261.user.intent.*;
 
 // Need to query databases
 import java.sql.*;
@@ -38,7 +35,16 @@ public class LanguageUnderstander {
 				latestUserIntent = new UseCommand(nowInputText);
 			}
 			
-		}else if(isUserIntent(nowInputText, "WritePBS")){
+		}else if(isUserIntent(nowInputText, "FetchDocumentation")){
+			System.out.println("Detected User Intent: FetchDocumentation");
+			if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("FetchDocumentation")) {//intent continues
+				latestUserIntent.updateSlotValues(nowInputText);
+			}else {//new intent
+				System.out.println("Updated User Intent: FetchDocumentation");
+				latestUserIntent = new FetchDocumentation(nowInputText);
+			}
+
+		} else if(isUserIntent(nowInputText, "WritePBS")){
 			System.out.println("Detected User Intent: WritePBS");
 			if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("WritePBS")) {//intent continues
 				latestUserIntent.updateSlotValues(nowInputText);
@@ -46,6 +52,7 @@ public class LanguageUnderstander {
 				System.out.println("Updated User Intent: WritePBS");
 				latestUserIntent = new WritePBS(nowInputText);
 			}
+
 		}else if(isUserIntent(nowInputText, "TroubleShoot")){
 			System.out.println("Detected User Intent: TroubleShoot");
 			if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("TroubleShoot")) {//intent continues
@@ -62,7 +69,9 @@ public class LanguageUnderstander {
 				latestUserIntent.updateSlotValues(nowInputText);
 			}else if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("TroubleShoot")) {//intent continues
 				latestUserIntent.updateSlotValues(nowInputText);
-				}
+			}else if(latestUserIntent!=null&&latestUserIntent.getIntentName().equals("FetchDocumentation")){//intent continues
+				latestUserIntent.updateSlotValues(nowInputText);
+			}
 			}
 		}
 

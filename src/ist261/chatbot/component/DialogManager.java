@@ -36,6 +36,16 @@ public class DialogManager {
 				return "ask-command";
 			}
 
+		}
+		else if(nowUserIntent.getIntentName().equals("FetchDocumentation")){
+			if(nowUserIntent.getLastestSlotValue("doc_command")!=null &&
+					nowUserIntent.getLastestSlotValue("doc_command")!="null"){
+				return "get-doc";
+			}
+			else{
+				return "ask-doc-command";
+			}
+
 		}else if(nowUserIntent.getIntentName().equals("WritePBS")){
 			if(nowUserIntent.getLastestSlotValue("shell")==null){
 				return "ask-shell";

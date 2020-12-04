@@ -119,6 +119,56 @@ public class ResponseGenerator {
 						"Try asking me something like \"How to use the 'cat' command!\"";
 			}
 
+		}else if(nowUserIntent!=null&&nowUserIntent.getIntentName().equals("FetchDocumentation")){
+			String docCommand = (String) nowUserIntent.getLastestSlotValue("doc_command");
+			if (nowConversationalAction.equals("get-doc")){
+				try {
+					// Connect to database
+					conn = DriverManager.getConnection("jdbc:sqlite:/home/nucci/Documents/ist261_code/ist261_final_project/data/commands.db");
+					conn.setAutoCommit(false);
+
+					// Retrieve PDF file from database
+					String fetchDocumentation = "SELECT doc FROM docs WHERE name = ?";
+					PreparedStatement selectCommand = conn.prepareStatement(fetchDocumentation);
+					selectCommand.setString(1, docCommand);
+					ResultSet resultSet = selectCommand.executeQuery();
+
+					// Convert Blob into PDF
+					byte[] byteArray = resultSet.getBytes("doc");
+					File newFile = new File("/home/nucci/work/" + docCommand + ".pdf");
+					if(newFile.isFile()){
+						newFile.delete();
+					}
+					newFile.createNewFile();
+					FileOutputStream writePDF = new FileOutputStream("/home/nucci/work/" +
+							docCommand + ".pdf");
+					writePDF.write(byteArray);
+
+					return "You got it! I saved the documentation for " + docCommand + " in your work directory " +
+							"as " + docCommand + ".pdf";
+
+
+				} catch (SQLException | IOException e){
+					System.out.println(e);
+
+				}
+			}else if(nowConversationalAction.equals("ask-doc-command")){
+				int docResponse = randomInt.nextInt(2);
+				switch (docResponse) {
+					case 0:
+						return "Sure, I can help you look for some documentation. Just tell me the command " +
+								"that you are looking for, and I'll see if I have any documentation for it.";
+
+					case 1:
+						return "Could you please tell me the command you're looking for? I'll see if I have " +
+								"documentation for it stored in my database.";
+				}
+			}else{
+				return "Hmm. I don't think I have documentation for the command you specified. Try asking " +
+						"me \"Fetch me the docs for the alias command\"";
+			}
+
+
 		}else if(nowUserIntent!=null&&nowUserIntent.getIntentName().equals("WritePBS")){
 			// Pull all the slot values from the slot table
 			String shell = (String) nowUserIntent.getLastestSlotValue("shell");
