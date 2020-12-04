@@ -73,6 +73,10 @@ public class LanguageUnderstander {
 		String[] useCommandKeyWord = new String[]{"How do", "How to", "Trying do", "Trying to",
 				"Can", "Need help", "Need to"};
 
+		// Words to indicate user is trying to retrieve documentation
+		String[] fetchDocKeyWord = new String[]{"Documentation", "Doc", "Man Pages", "Manual", "Get me",
+				"Retrieve for me"};
+
 		// Words to indicate intent is to draft pbs script
 		String[] writePBSKeyWord = new String[]{"Autogenerate", "Write", "Draft", "Job script",
 				"Pbs script", "Submission Script", "Writing"};
@@ -105,6 +109,13 @@ public class LanguageUnderstander {
 				break;
 			}
 
+		}
+
+		for (int i = 0; i < fetchDocKeyWord.length; i++) {
+			if(originalNowInputText.toLowerCase().contains(fetchDocKeyWord[i].toLowerCase())){
+				nowInputText = "FetchDocumentation";
+				break;
+			}
 		}
 
 		for (int i = 0; i < writePBSKeyWord.length; i++){
