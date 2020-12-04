@@ -1,0 +1,7 @@
+find is used to search for
+files in a directory hierarchy.
+For example, here is how you
+could use find to find a file
+missing in your work directory:
+
+  find . -maxdepth 3 -name 'file.txt'

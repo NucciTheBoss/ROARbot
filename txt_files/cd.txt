@@ -1,0 +1,5 @@
+cd is used to change the current directory.
+For example, here is how you would use cd
+to change into your scratch directory:
+
+  cd ~/scratch

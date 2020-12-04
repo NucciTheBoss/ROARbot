@@ -1,0 +1,11 @@
+gzip is used to compress or
+expand files. Here is how you
+could use gzip to compress a
+file:
+
+  gzip -c file.txt > file.gz
+
+Then, to uncompress the file,
+you would just use gunzip:
+
+  gunzip file.gz

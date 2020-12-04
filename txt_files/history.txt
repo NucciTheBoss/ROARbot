@@ -1,0 +1,8 @@
+history is used to keep
+track of each line of input
+entered by a user. For example,
+here is how you would print out
+your command history to
+the terminal:
+
+  history

@@ -1,0 +1,12 @@
+kill is used to send a
+single to a running process.
+For example, here is how you
+would kill a running process:
+
+  kill 212121
+
+If the process still doesn't
+stop, then you can use the
+following command:
+
+  kill -9 212121

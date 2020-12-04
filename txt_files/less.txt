@@ -1,0 +1,10 @@
+less is used to read files
+on your command line. For
+example, here is how you would
+use less to read a file:
+
+  less somefile.md
+
+In order to quite less, 
+just hit "q" on your
+keyboard.

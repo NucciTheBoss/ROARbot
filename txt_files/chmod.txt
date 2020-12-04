@@ -1,0 +1,10 @@
+chmod is used to modify file permissions. 
+For example, here is how you would make
+a file executable by using chmod:
+
+  chmod +x somefile.sh
+
+You do other things with chmod such
+as revoke write access from a file:
+
+  chmod -w somefile.sh

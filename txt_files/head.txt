@@ -1,0 +1,7 @@
+head is used to print out
+the first 10 lines of a
+file to standard output.
+Here is how you would
+use head:
+
+  head somefile.txt

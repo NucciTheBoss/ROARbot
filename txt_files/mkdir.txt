@@ -1,0 +1,8 @@
+mkdir is used to make
+directories. For example,
+here is how you would
+make the directory test
+in your work directory:
+
+  cd ~/work
+  mkdir test

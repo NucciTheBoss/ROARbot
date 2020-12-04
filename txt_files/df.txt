@@ -1,0 +1,6 @@
+df is used to report file system
+disk space usage. For example,
+here is how you would use df to
+print out disk space usage:
+
+  df -h

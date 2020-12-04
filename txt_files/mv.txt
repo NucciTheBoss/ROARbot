@@ -1,0 +1,11 @@
+mv can be used to move
+or rename files. For example,
+here is how you would move a
+file your scratch directory:
+
+  mv somefile.txt ~/scratch
+
+To rename a file, you would
+use the following command:
+
+  mv somefile.txt afile.txt

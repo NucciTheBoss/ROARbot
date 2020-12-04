@@ -1,0 +1,8 @@
+wget is used to download
+files from the internet. wget
+supports HTTP, HTTPS, and FTP
+protocols. For example, here is
+how you would use wget to download
+a file from the internet:
+
+  wget https://www.site.io/somefile.txt

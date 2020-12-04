@@ -1,0 +1,8 @@
+du is used to estimate file
+space usage. For example, here
+is how you would use du to estimate
+the space usage in your home
+directory:
+
+  cd ~
+  du -h --max-depth=1

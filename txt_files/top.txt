@@ -1,0 +1,6 @@
+top is used to display running
+processes. For example, here is
+how you could display the processes
+you are currently running:
+
+  top -u username

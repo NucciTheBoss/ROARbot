@@ -1,0 +1,13 @@
+diff is used to compare files
+line by line. For example, here
+is how you could see the difference
+between two files printed out to
+two columns:
+
+  diff file.txt file2.txt -y
+
+Here's how you could keep the report
+breif (report only if the files are
+different from each other):
+
+  diff file.txt file2.txt -q

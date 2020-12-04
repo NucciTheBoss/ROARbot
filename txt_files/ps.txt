@@ -1,0 +1,8 @@
+ps is used to provide a
+snapshot of the current
+processes running on a node.
+Here is how you could use ps
+to list out process currently
+running on your node:
+
+  ps -e

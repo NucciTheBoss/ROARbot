@@ -1,0 +1,8 @@
+exit is used to cause
+normal process termination
+(i.e. logout). For example,
+here is how you would use
+exit to exit your current
+bash shell:
+
+  exit

@@ -1,0 +1,6 @@
+ls is used to list directory
+contents. For example, here
+is how you would list out the
+contents of the /etc directory:
+
+  ls /etc

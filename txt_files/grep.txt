@@ -1,0 +1,6 @@
+grep is used to print lines that
+match a pattern. For example, you
+can use grep to look for a specific
+directory:
+
+  ls /etc | grep skel

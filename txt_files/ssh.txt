@@ -1,0 +1,6 @@
+ssh is the OpenSSH remote
+login client. For example,
+here is how you would use
+ssh to connect to Roar:
+
+  ssh username@aci-b.aci.ics.psu.edu

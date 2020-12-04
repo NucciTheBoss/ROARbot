@@ -1,0 +1,6 @@
+which is used to locate a
+command. For example, here is
+how you would use which to 
+locate the tail command:
+
+  which tail
