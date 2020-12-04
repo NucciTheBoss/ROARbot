@@ -16,9 +16,23 @@ public class DialogManager {
 			return "ask-intent";
 
 		}else if(nowUserIntent.getIntentName().equals("UseCommand")){
-			if(nowUserIntent.getLastestSlotValue("command")!=null){
+			if(nowUserIntent.getLastestSlotValue("command")!=null &&
+					nowUserIntent.getLastestSlotValue("docs")==null ||
+					nowUserIntent.getLastestSlotValue("command")!=null &&
+					nowUserIntent.getLastestSlotValue("docs").equals("null")){
 				return "answer-command";
-			}else{
+			}
+			else if(nowUserIntent.getLastestSlotValue("command")!=null &&
+					nowUserIntent.getLastestSlotValue("docs")!=null){
+				if(nowUserIntent.getLastestSlotValue("docs").equals("yes")){
+					return "provide-doc";
+				}
+				else {
+					return "no-doc";
+				}
+
+			}
+			else{
 				return "ask-command";
 			}
 

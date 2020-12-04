@@ -7,6 +7,8 @@ import java.util.Random;
 
 // Import sql libraries to read project database
 import java.sql.*;
+// Import FileIOStream to convert BLOB back to pdf
+import java.io.FileOutputStream;
 
 // Import file class to write pbs script for user
 import java.io.FileWriter;
@@ -26,7 +28,7 @@ public class ResponseGenerator {
 	public String getResponse(AbstractUserIntent nowUserIntent, String nowConversationalAction) {
 		Random randomInt = new Random();
 		if(nowUserIntent!=null&&nowUserIntent.getIntentName().equals("UseCommand")) {
-			String nowCommand = (String)nowUserIntent.getLastestSlotValue("command");
+			String nowCommand = (String) nowUserIntent.getLastestSlotValue("command");
 			if(nowConversationalAction.equals("ask-command")){
 				int askCommandResponse = randomInt.nextInt(3);
 				switch (askCommandResponse) {
@@ -56,14 +58,63 @@ public class ResponseGenerator {
 					ResultSet resultSet = selectCommand.executeQuery();
 
 					// Return content statement
-					return resultSet.getString("content");
+					return resultSet.getString("content") +
+							"\n\nIt looks like I have some more documentation available for " + nowCommand +
+							". Would you like me to fetch it for you?";
 
 				} catch ( SQLException e ) {
 					System.out.println(e);
 
 				}
 
-			}else{
+			}else if(nowConversationalAction.equals("provide-doc")){
+				try {
+					// Connect to database
+					conn = DriverManager.getConnection("jdbc:sqlite:/home/nucci/Documents/ist261_code/ist261_final_project/data/commands.db");
+					conn.setAutoCommit(false);
+
+					// Retrieve PDF file from database
+					String fetchDocumentation = "SELECT doc FROM docs WHERE name = ?";
+					PreparedStatement selectCommand = conn.prepareStatement(fetchDocumentation);
+					selectCommand.setString(1, nowCommand);
+					ResultSet resultSet = selectCommand.executeQuery();
+
+					// Convert Blob into PDF
+					byte[] byteArray = resultSet.getBytes("doc");
+					File newFile = new File("/home/nucci/work/" + nowCommand + ".pdf");
+					if(newFile.isFile()){
+						newFile.delete();
+					}
+					newFile.createNewFile();
+					FileOutputStream writePDF = new FileOutputStream("/home/nucci/work/" +
+							nowCommand + ".pdf");
+					writePDF.write(byteArray);
+
+					return "Alright, I saved the documentation for " + nowCommand + " in your work directory " +
+							"as " + nowCommand + ".pdf";
+
+
+				} catch (SQLException | IOException e){
+					System.out.println(e);
+
+				}
+
+
+			}else if(nowConversationalAction.equals("no-doc")){
+				int fetchDocumentationResponse = randomInt.nextInt(2);
+				switch (fetchDocumentationResponse){
+					case 0:
+						return "Sounds good! If you want more documentation for " +
+								nowCommand + " in the future just ask me \"Fetch me the " +
+								"documentation for " + nowCommand + "\"";
+
+					case 1:
+						return "You got it! If you ever want more documentation for " +
+								nowCommand + " in the future just ask me \"Grab me the " +
+								"documentation for " + nowCommand + "\"";
+				}
+			}
+			else{
 				return "I'm sorry, but I don't understand what you just said. " +
 						"Try asking me something like \"How to use the 'cat' command!\"";
 			}
