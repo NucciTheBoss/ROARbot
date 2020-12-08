@@ -1,7 +1,6 @@
 package ist261.user.intent;
 
 import java.util.Hashtable;
-import java.util.Locale;
 
 public class UseCommand extends AbstractUserIntent{
     public UseCommand(String userMsg) { super(userMsg); }
