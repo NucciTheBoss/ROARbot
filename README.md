@@ -12,7 +12,7 @@ While these tasks may seem silly to the semi-competent Linux aficionado (persona
 # See ROARbot in action!
 In order to be graded on how well I built ROARbot, I recorded a YouTube video of ROARbot doing its thing. In the video, I demonstrate ROARbot's basic capabilites. You should be able to view the video below, but if it does not work for you, then please follow the YouTube link that I included below:
 
-
+https://user-images.githubusercontent.com/40342202/111883187-255bc800-8990-11eb-8393-75dc6ac8cb10.mp4
 
 https://www.youtube.com/watch?v=fITgYZ2PY-w
 
